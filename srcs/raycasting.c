@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgunzbur <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 15:43:32 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/02/20 14:39:45 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/02/20 17:08:53 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ void	draw_column(double d, t_param *p, int x)
 	double	y_img;
 
 	d = SCREEN_Y / d;
-	y = (floor(SCREEN_Y / 2 - d / 2) < 0 ? floor(SCREEN_Y / 2 - d / 2) : 0);
-	while (y < floor(SCREEN_Y / 2 - d / 2))
+	y = (floor(SCREEN_Y / p->vy - d / 2) < 0 ? floor(SCREEN_Y / p->vy - d / 2) : 0);
+	while (y < floor(SCREEN_Y / p->vy - d / 2))
 		draw_pixel(x, y++, p, CEIL);
 	y_img = 0;
 	p->pos = p->pos * (double)p->img_x;
-	while (y < SCREEN_Y && y < floor(SCREEN_Y / 2 + d / 2))
+	while (y < SCREEN_Y && y < floor(SCREEN_Y / p->vy + d / 2))
 	{
 		copy_pixel(x, y++, (int)floor(y_img), p);
 		y_img += (p->img_y / d);

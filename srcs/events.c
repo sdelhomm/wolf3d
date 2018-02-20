@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:37:52 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/02/20 16:52:17 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/02/20 17:51:17 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,30 @@ static void	check_collision(int kc, t_param *p, t_map map)
 
 int			mouse_hook(int x, int y, t_param *p)
 {
-	y = 0;
 	if (!p->pos_x)
 	{
 		p->pos_x = abs(x);
 		p->pos_y = abs(y);
 	}
-	if (x < p->lx - 1)
+	if (x < p->lx)
 		p->j.a -= 2.5;
-	if (x > p->lx + 1)
+	if (x > p->lx)
 		p->j.a += 2.5;
-	if (x <= 5 || x >= SCREEN_X - 5)
+	if (y < p->ly && p->vy - 0.1 > 0)
+		p->vy -= 0.1;
+	if (y > p->ly)
+		p->vy += 0.1;
+	if (x <= 5 || x >= SCREEN_X - 5 || y <= 5 || y >= SCREEN_Y - 5)
 	{
 		CGWarpMouseCursorPosition(CGPointMake(SCREEN_X / 2 + p->pos_x, SCREEN_Y / 2 + p->pos_y));
 		p->lx = SCREEN_X / 2 - p->pos_x;
-		x = (x + p->pos_x <= 10 ? p->lx + 100 : p->lx - 100);
+		p->ly = SCREEN_Y / 2 - p->pos_y;
 	}
-	p->lx = x;
+	else
+	{
+		p->lx = x;
+		p->ly = y;
+	}
 	return (0);
 }
 
