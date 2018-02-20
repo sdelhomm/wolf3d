@@ -6,54 +6,33 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:37:52 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/02/20 12:00:47 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/02/20 16:13:37 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "../includes/wolf3d.h"
 
-static void	movement(int keycode, t_param *p)
+static void	check_collision(int keycode, t_param *p, t_map map)
 {
-	if (keycode == 0)
-		p->j.a -= 5;
-	if (keycode == 2)
-		p->j.a += 5;
-	if (keycode == 126 && p->map.y - 0.1 > (p->j.y + (0.1 * sin(p->j.a * M_PI / 180)))
-		&& (p->j.y + (0.1 * sin(p->j.a * M_PI / 180))) > 0.1
-		&& p->map.x - 0.1 > (p->j.x + (0.1 * cos(p->j.a * M_PI / 180))) 
-		&& (p->j.x + (0.1 * cos(p->j.a * M_PI / 180))) > 0.1
-		&& p->map.map[(int)floor(p->j.y + (0.1 * sin(p->j.a * M_PI / 180)))][(int)floor(p->j.x + (0.1 * cos(p->j.a * M_PI / 180)))] != 1)
+	double	x;
+	double	y;
+	double	a;
+
+	x = p->j.x;
+	y = p->j.y;
+	a = p->j.a * M_PI / 180;
+	a += (keycode == 123 ? -M_PI_2 : 0);
+	a += (keycode == 124 ? M_PI_2 : 0);
+	a += (keycode == 125 ? M_PI : 0);
+	x = x + HB * cos(a);
+	y = y + HB * sin(a);
+	if (x >= 0 && y >= 0 && x < map.x && y < map.y &&
+		map.map[(int)floor(y + 0.1 * sin(a))][(int)floor(x + 0.1 * cos(a))] != 1
+		&& map.map[(int)floor(y)][(int)floor(x)] != 1)
 	{
-		p->j.y += 0.1 * sin(p->j.a * M_PI / 180);
-		p->j.x += 0.1 * cos(p->j.a * M_PI / 180);
-	}
-	if (keycode == 125 && p->map.y - 0.1 > (p->j.y + (0.1 * sin((p->j.a + 180) * M_PI / 180)))
-		&& (p->j.y + (0.1 * sin((p->j.a + 180) * M_PI / 180))) > 0.1
-		&& p->map.x - 0.1 > (p->j.x + (0.1 * cos((p->j.a + 180) * M_PI / 180))) 
-		&& (p->j.x + (0.1 * cos((p->j.a + 180) * M_PI / 180))) > 0.1
-		&& p->map.map[(int)floor(p->j.y + (0.1 * sin((p->j.a + 180) * M_PI / 180)))][(int)floor(p->j.x + (0.1 * cos((p->j.a + 180) * M_PI / 180)))] != 1)
-	{
-		p->j.y += 0.1 * sin((p->j.a + 180) * M_PI / 180);
-		p->j.x += 0.1 * cos((p->j.a + 180) * M_PI / 180);
-	}
-	if (keycode == 123 && p->map.y - 0.1 > (p->j.y + (0.1 * sin((p->j.a - 90) * M_PI / 180)))
-		&& (p->j.y + (0.1 * sin((p->j.a - 90) * M_PI / 180))) > 0.1
-		&& p->map.x - 0.1 > (p->j.x + (0.1 * cos((p->j.a - 90) * M_PI / 180))) 
-		&& (p->j.x + (0.1 * cos((p->j.a - 90) * M_PI / 180))) > 0.1
-		&& p->map.map[(int)floor(p->j.y + (0.1 * sin((p->j.a - 90) * M_PI / 180)))][(int)floor(p->j.x + (0.1 * cos((p->j.a - 90) * M_PI / 180)))] != 1)
-	{
-		p->j.y += 0.1 * sin((p->j.a - 90) * M_PI / 180);
-		p->j.x += 0.1 * cos((p->j.a - 90) * M_PI / 180);
-	}
-	if (keycode == 124 && p->map.y - 0.1 > (p->j.y + (0.1 * sin((p->j.a + 90) * M_PI / 180)))
-		&& (p->j.y + (0.1 * sin((p->j.a + 90) * M_PI / 180))) > 0.1
-		&& p->map.x - 0.1 > (p->j.x + (0.1 * cos((p->j.a + 90) * M_PI / 180)))
-		&& (p->j.x + (0.1 * cos((p->j.a + 90) * M_PI / 180))) > 0.1
-		&& p->map.map[(int)floor(p->j.y + (0.1 * sin((p->j.a + 90) * M_PI / 180)))][(int)floor(p->j.x + (0.1 * cos((p->j.a + 90) * M_PI / 180)))] != 1)
-	{
-		p->j.y += 0.1 * sin((p->j.a + 90) * M_PI / 180);
-		p->j.x += 0.1 * cos((p->j.a + 90) * M_PI / 180);
+		p->j.x = p->j.x + 0.1 * cos(a);
+		p->j.y = p->j.y + 0.1 * sin(a);
 	}
 }
 
@@ -76,9 +55,6 @@ int			mouse_hook(int x, int y, t_param *p)
 		x = (x + p->pos_x <= 10 ? p->lx + 100 : p->lx - 100);
 	}
 	p->lx = x;
-	//p->ptr_img = mlx_new_image(p->mlx, SCREEN_X, SCREEN_Y);
-	//p->img = mlx_get_data_addr(p->ptr_img, &p->sl, &p->end, &p->bpp);
-	//wolf3d(p);
 	return (0);
 }
 
@@ -91,23 +67,18 @@ int			key_hook(int keycode, t_param *p)
 		exit(0);
 	if (keycode == 49)
 	{
-		x = (int)floor(p->j.x + cos(p->j.a * M_PI / 180));
-		y = (int)floor(p->j.y + sin(p->j.a * M_PI / 180));
-		if (x >= 0 && y >= 0 && x < p->map.x && y < p->map.y && p->map.map[y][x] == 1)
+		x = (int)floor(p->j.x + cos(p->j.a * M_PI / 180) / 2);
+		y = (int)floor(p->j.y + sin(p->j.a * M_PI / 180) / 2);
+		if (x >= 0 && y >= 0 &&
+			x < p->map.x && y < p->map.y && p->map.map[y][x] == 1)
 			p->map.map[(int)floor(y)][(int)floor(x)] = 0;
 	}
-	movement(keycode, p);
-	//p->ptr_img = mlx_new_image(p->mlx, SCREEN_X, SCREEN_Y);
-	//p->img = mlx_get_data_addr(p->ptr_img, &p->sl, &p->end, &p->bpp);
-	//wolf3d(p);
+	check_collision(keycode, p, p->map);
 	return (0);
 }
 
 int			hook(t_param *p)
 {
-	static int x = 0;
-
-	printf("%d\n", x++);
 	p->ptr_img = mlx_new_image(p->mlx, SCREEN_X, SCREEN_Y);
 	p->img = mlx_get_data_addr(p->ptr_img, &p->sl, &p->end, &p->bpp);
 	wolf3d(p);

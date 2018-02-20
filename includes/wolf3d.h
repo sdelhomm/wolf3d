@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:38:43 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/02/20 12:49:01 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/02/20 15:40:36 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define B_HAMMER 9
 # define END 10
 # define O_END 11
+# define HB 0.3
 
 # define FILE_NORTH "texture/Assembly.xpm"
 # define FILE_SOUTH "texture/Evilmacs.xpm"
