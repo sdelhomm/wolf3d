@@ -6,7 +6,7 @@
 /*   By: tgunzbur <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 15:43:32 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/02/20 12:49:03 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/02/20 14:39:45 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ int		set_direction(double x, double y, t_player j, t_map map)
 	dir = (x == nearbyint(x) && x > j.x ? EAST : dir);
 	dir = (y == nearbyint(y) && y < j.y ? NORTH : dir);
 	dir = (y == nearbyint(y) && y > j.y ? SOUTH : dir);
-	dir = (map.map[(int)floor(y)][(int)floor(x)] == 2 ? HAMMER : dir);
-	dir = (map.map[(int)floor(y)][(int)floor(x)] == 2 ? B_HAMMER : dir);
-	dir = (map.map[(int)floor(y)][(int)floor(x)] == 2 ? END : dir);
-	dir = (map.map[(int)floor(y)][(int)floor(x)] == 2 ? O_END : dir);
+	if ((int)floor(x) >= 0 && (int)floor(y) >= 0 &&
+		(int)floor(x) < map.x && (int)floor(y) < map.y)
+	{
+		dir = (map.map[(int)floor(y)][(int)floor(x)] == 2 ? HAMMER : dir);
+		dir = (map.map[(int)floor(y)][(int)floor(x)] == 3 ? B_HAMMER : dir);
+		dir = (map.map[(int)floor(y)][(int)floor(x)] == 4 ? END : dir);
+		dir = (map.map[(int)floor(y)][(int)floor(x)] == 5 ? O_END : dir);
+	}
 	return (dir);
 }
 
@@ -36,7 +40,7 @@ double	raycast(double coefx, double coefy, t_player j, t_param *p)
 
 	x = j.x;
 	y = j.y;
-	while (x > 0 && y > 0 && x < p->map.x && y < p->map.y &&
+	while (x >= 0 && y >= 0 && x < p->map.x && y < p->map.y &&
 			p->map.map[(int)floor(y)][(int)floor(x)] != 1)
 	{
 		x += coefx / 500;
