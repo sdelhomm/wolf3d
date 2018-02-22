@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:38:43 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/02/20 17:10:21 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/02/22 13:58:46 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct	s_param
 	int			pos_y;
 	int			lx;
 	int			ly;
-	float			vy;
+	float		vy;
 }				t_param;
 
 int				get_map(char *file, t_map *map, t_player *j);

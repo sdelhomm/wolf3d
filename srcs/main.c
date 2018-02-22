@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:05:49 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/02/20 17:35:03 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/02/22 13:57:32 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_param	init(t_param p)
 {
 	p.lx = SCREEN_X / 2;
 	p.ly = SCREEN_Y / 2;
-	p.vy = 2;
+	p.vy = SCREEN_Y / 2;
 	p.mlx = mlx_init();
 	p.win = mlx_new_window(p.mlx, SCREEN_X, SCREEN_Y, "Wolf3D");
 	p.ptr_img = mlx_xpm_file_to_image(p.mlx, FILE_NORTH, &p.img_x, &p.img_y);
@@ -29,7 +29,7 @@ t_param	init(t_param p)
 	p.east = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
 	p.ptr_img = mlx_new_image(p.mlx, SCREEN_X, SCREEN_Y);
 	p.img = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
-	//CGDisplayHideCursor((CGDirectDisplayID)NULL);
+	CGDisplayHideCursor((CGDirectDisplayID)NULL);
 	CGWarpMouseCursorPosition(CGPointMake(0, 0));
 	return (p);
 }

@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:37:52 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/02/20 17:51:17 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/02/22 13:57:26 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int			mouse_hook(int x, int y, t_param *p)
 		p->j.a -= 2.5;
 	if (x > p->lx)
 		p->j.a += 2.5;
-	if (y < p->ly && p->vy - 0.1 > 0)
-		p->vy -= 0.1;
-	if (y > p->ly)
-		p->vy += 0.1;
+	if (y < p->ly && p->vy < SCREEN_Y * 2)
+		p->vy += 20;
+	if (y > p->ly && p->vy > -SCREEN_Y)
+		p->vy -= 20;
 	if (x <= 5 || x >= SCREEN_X - 5 || y <= 5 || y >= SCREEN_Y - 5)
 	{
 		CGWarpMouseCursorPosition(CGPointMake(SCREEN_X / 2 + p->pos_x, SCREEN_Y / 2 + p->pos_y));
