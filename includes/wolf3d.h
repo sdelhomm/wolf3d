@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:38:43 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/02/22 13:58:46 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/02/22 15:39:38 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 # define FILE_NORTH "texture/Assembly.xpm"
 # define FILE_SOUTH "texture/Evilmacs.xpm"
 # define FILE_WEST "texture/Winanzi.xpm"
-# define FILE_EAST "texture/Tag.xpm"
+# define FILE_EAST "texture/niel_wall.xpm"
+# define FILE_HAMMER "texture/fps_hammer.xpm"
 
 # include "../libft/includes/libft.h"
 # include <mlx.h>
@@ -57,6 +58,7 @@ typedef struct	s_param
 	void		*mlx;
 	void		*win;
 	void		*ptr_img;
+	void		*ptr_img2;
 	char		*img;
 	int			bpp;
 	int			sl;
@@ -67,8 +69,11 @@ typedef struct	s_param
 	char		*south;
 	char		*west;
 	char		*east;
+	char		*weap;
 	int			img_x;
 	int			img_y;
+	int			img_x2;
+	int			img_y2;
 	t_player	j;
 	t_map		map;
 	int			pos_x;

@@ -6,11 +6,10 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:37:52 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/02/22 13:57:26 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/02/22 13:59:57 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "../includes/wolf3d.h"
 
 static void	check_collision(int kc, t_param *p, t_map map)

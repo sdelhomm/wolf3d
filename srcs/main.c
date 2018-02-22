@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:05:49 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/02/22 13:57:32 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/02/22 15:30:08 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_param	init(t_param p)
 	p.west = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
 	p.ptr_img = mlx_xpm_file_to_image(p.mlx, FILE_EAST, &p.img_x, &p.img_y);
 	p.east = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
+	p.ptr_img2 = mlx_xpm_file_to_image(p.mlx, FILE_HAMMER, &p.img_x2, &p.img_y2);
+	p.weap = mlx_get_data_addr(p.ptr_img2, &p.sl, &p.end, &p.bpp);
 	p.ptr_img = mlx_new_image(p.mlx, SCREEN_X, SCREEN_Y);
 	p.img = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
 	CGDisplayHideCursor((CGDirectDisplayID)NULL);
