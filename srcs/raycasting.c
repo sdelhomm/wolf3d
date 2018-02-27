@@ -6,29 +6,31 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 15:43:32 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/02/22 15:37:32 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:40:26 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
+#include <stdio.h>
 
-int		set_direction(double x, double y, t_player j, t_map map)
+int		set_direction(double x, double y, t_player j, t_param *p)
 {
 	int dir;
 
 	dir = 0;
-	dir = (x == 0 || x == map.x || y == 0 || y == map.y ? W : dir);
+	dir = (x == 0 || x == p->map.x || y == 0 || y == p->map.y ? W : dir);
 	dir = (x == nearbyint(x) && x < j.x ? WEST : dir);
 	dir = (x == nearbyint(x) && x > j.x ? EAST : dir);
 	dir = (y == nearbyint(y) && y < j.y ? NORTH : dir);
 	dir = (y == nearbyint(y) && y > j.y ? SOUTH : dir);
-	if ((int)floor(x) >= 0 && (int)floor(y) >= 0 &&
-		(int)floor(x) < map.x && (int)floor(y) < map.y)
+	if ((int)floor(p->rx) >= 0 && (int)floor(p->ry) >= 0 &&
+		(int)floor(p->rx) < p->map.x && (int)floor(p->ry) < p->map.y)
 	{
-		dir = (map.map[(int)floor(y)][(int)floor(x)] == 2 ? HAMMER : dir);
-		dir = (map.map[(int)floor(y)][(int)floor(x)] == 3 ? B_HAMMER : dir);
-		dir = (map.map[(int)floor(y)][(int)floor(x)] == 4 ? END : dir);
-		dir = (map.map[(int)floor(y)][(int)floor(x)] == 5 ? O_END : dir);
+		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 2 ? HAMMER_WALL : dir);
+		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 3 ? TAG : dir);
+		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 4 ? SERPI : dir);
+		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 5 ? END : dir);
+		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 6 ? O_END : dir);
 	}
 	return (dir);
 }
@@ -41,11 +43,16 @@ double	raycast(double coefx, double coefy, t_player j, t_param *p)
 	x = j.x;
 	y = j.y;
 	while (x >= 0 && y >= 0 && x < p->map.x && y < p->map.y &&
-			p->map.map[(int)floor(y)][(int)floor(x)] != 1)
+			p->map.map[(int)floor(y)][(int)floor(x)] != 1 &&
+			p->map.map[(int)floor(y)][(int)floor(x)] != 2 &&
+			p->map.map[(int)floor(y)][(int)floor(x)] != 3 &&
+			p->map.map[(int)floor(y)][(int)floor(x)] != 4)
 	{
 		x += coefx / 500;
 		y += coefy / 500;
 	}
+	p->rx = x;
+	p->ry = y;
 	if (nearbyint(x) + 0.01 >= x && nearbyint(x) - 0.01 <= x)
 	{
 		x = nearbyint(x);
@@ -56,7 +63,7 @@ double	raycast(double coefx, double coefy, t_player j, t_param *p)
 		p->pos = x - floor(x);
 		y = nearbyint(y);
 	}
-	p->dir = set_direction(x, y, j, p->map);
+	p->dir = set_direction(x, y, j, p);
 	return (sqrt(pow(x - j.x, 2) + pow(y - j.y, 2)));
 }
 
@@ -98,7 +105,10 @@ int		wolf3d(t_param *p)
 		a += ((double)60 / (double)SCREEN_X);
 	}
 	mlx_put_image_to_window(p->mlx, p->win, p->ptr_img, 0, 0);
-	mlx_put_image_to_window(p->mlx, p->win, p->ptr_img2, SCREEN_X * 0.5, SCREEN_Y * 0.5);
+	if (p->j.item == 1)
+		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img2, p->wx, p->wy);
+	if (p->j.item == 2)
+		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img3, p->wx, p->wy);
 	mlx_destroy_image(p->mlx, p->ptr_img);
 	return (0);
 }

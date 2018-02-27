@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgunzbur <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 12:26:54 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/02/19 12:30:48 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/02/27 17:47:08 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ int		copy_pixel(int x, int y, int y_img, t_param *p)
 		img = p->east;
 	if (p->dir == WEST)
 		img = p->west;
+	if (p->dir == HAMMER_WALL)
+		img = p->hwall;
+	if (p->dir == TAG)
+		img = p->tag;
+	if (p->dir == SERPI)
+		img = p->swall;
 	pos = x * 4 + y * 4 * SCREEN_X;
 	pos_img = (int)p->pos * 4 + y_img * 4 * p->img_x;
 	p->img[pos] = img[pos_img];
