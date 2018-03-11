@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:38:43 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/02/27 17:46:55 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/11 13:03:37 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # define WEST 6
 # define EAST 7
 # define END 10
-# define O_END 11
 # define HAMMER_WALL 12
 # define SERPI 13
+# define WALL 14
 # define TAG 15
 # define HB 0.3
 
@@ -43,6 +43,10 @@
 # define FILE_SERPI "texture/serpi_wall.xpm"
 # define FILE_SERPI2 "texture/serpi_wall2.xpm"
 # define FILE_WSERPI "texture/fps_serpi.xpm"
+# define FILE_WALL "texture/Wall.xpm"
+# define FILE_WEXIT "texture/end_door.xpm"
+# define FILE_WEXIT2 "texture/o_end_door.xpm"
+# define FILE_KEY "texture/key.xpm"
 
 # include "../libft/includes/libft.h"
 # include <mlx.h>
@@ -72,6 +76,7 @@ typedef struct	s_param
 	void		*ptr_img;
 	void		*ptr_img2;
 	void		*ptr_img3;
+	void		*ptr_img4;
 	char		*img;
 	int			bpp;
 	int			sl;
@@ -85,16 +90,24 @@ typedef struct	s_param
 	char		*weap;
 	char		*weap2;
 	char		*tag;
+	char		*wall;
 	char		*hwall;
 	char		*hwall2;
 	char		*hwall3;
 	char		*swall;
 	char		*swall2;
+	char		*wexit;
+	char		*wexit2;
+	char		*key;
+	int			wexitState;
 	int			hwallState;
+	int			exitKey;
 	int			img_x;
 	int			img_y;
 	int			img_x2;
 	int			img_y2;
+	int			img_x3;
+	int			img_y3;
 	t_player	j;
 	t_map		map;
 	int			pos_x;
@@ -117,5 +130,6 @@ int				draw_pixel(int x, int y, t_param *p, int color);
 int				copy_pixel(int x, int y, int y_img, t_param *p);
 int				hook(t_param *p);
 int				events_mouse(int bc, int x, int y, t_param *p);
+int				ft_exit(t_param *p);
 
 #endif

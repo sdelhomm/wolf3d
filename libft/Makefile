@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tgunzbur <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 13:18:42 by tgunzbur          #+#    #+#              #
-#    Updated: 2018/01/16 11:38:13 by tgunzbur         ###   ########.fr        #
+#    Updated: 2018/03/11 12:31:09 by sdelhomm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,7 @@ SRC = get_next_line.c \
 	  ft_strtolower.c \
 	  ft_strreplacechar.c \
 	  ft_put.c \
+	  ft_intchr.c \
 
 SRCPATH = ./srcs/
 

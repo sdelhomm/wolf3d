@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 15:43:32 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/02/27 17:40:26 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/11 13:12:12 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		set_direction(double x, double y, t_player j, t_param *p)
 		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 2 ? HAMMER_WALL : dir);
 		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 3 ? TAG : dir);
 		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 4 ? SERPI : dir);
-		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 5 ? END : dir);
-		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 6 ? O_END : dir);
+		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 5 ? WALL : dir);
+		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 8 ? END : dir);
 	}
 	return (dir);
 }
@@ -46,7 +46,9 @@ double	raycast(double coefx, double coefy, t_player j, t_param *p)
 			p->map.map[(int)floor(y)][(int)floor(x)] != 1 &&
 			p->map.map[(int)floor(y)][(int)floor(x)] != 2 &&
 			p->map.map[(int)floor(y)][(int)floor(x)] != 3 &&
-			p->map.map[(int)floor(y)][(int)floor(x)] != 4)
+			p->map.map[(int)floor(y)][(int)floor(x)] != 4 &&
+			p->map.map[(int)floor(y)][(int)floor(x)] != 5 &&
+			p->map.map[(int)floor(y)][(int)floor(x)] != 8)
 	{
 		x += coefx / 500;
 		y += coefy / 500;
@@ -109,6 +111,9 @@ int		wolf3d(t_param *p)
 		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img2, p->wx, p->wy);
 	if (p->j.item == 2)
 		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img3, p->wx, p->wy);
+	if (p->exitKey == 1)
+		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img4,
+			SCREEN_X * 0.05, SCREEN_Y * 0.05);
 	mlx_destroy_image(p->mlx, p->ptr_img);
 	return (0);
 }

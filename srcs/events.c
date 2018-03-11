@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:37:52 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/02/27 17:47:04 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/11 13:07:00 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ int		events_mouse(int bc, int x, int y, t_param *p)
 		if (x >= 0 && y >= 0 &&
 			x < p->map.x && y < p->map.y && p->map.map[y][x] == 1 && p->j.item == 1)
 			p->map.map[(int)floor(y)][(int)floor(x)] = 0;
+		else if (x >= 0 && y >= 0 &&
+			x < p->map.x && y < p->map.y && p->map.map[y][x] == 3 && p->j.item == 2)
+		{
+			p->map.map[(int)floor(y)][(int)floor(x)] = 5;
+			if (!(ft_intchr(p->map.map, 3, p->map.x, p->map.y)))
+				p->exitKey = 1;
+		}
 	}
 	return (0);
 }
@@ -46,8 +53,12 @@ static void	check_collision(int kc, t_param *p, t_map map)
 		&& map.map[(int)floor(y)][(int)floor(x)] != 2 &&
 		map.map[(int)floor(y - 0.2 * sin(a))][(int)floor(x - 0.2 * cos(a))] != 3
 		&& map.map[(int)floor(y)][(int)floor(x)] != 3 &&
-		map.map[(int)floor(y - 0.2 * sin(a))][(int)floor(x - 0.2 * cos(a))] != 3
-		&& map.map[(int)floor(y)][(int)floor(x)] != 4)
+		map.map[(int)floor(y - 0.2 * sin(a))][(int)floor(x - 0.2 * cos(a))] != 4
+		&& map.map[(int)floor(y)][(int)floor(x)] != 4 &&
+		map.map[(int)floor(y - 0.2 * sin(a))][(int)floor(x - 0.2 * cos(a))] != 5
+		&& map.map[(int)floor(y)][(int)floor(x)] != 5 &&
+		map.map[(int)floor(y - 0.2 * sin(a))][(int)floor(x - 0.2 * cos(a))] != 8
+		&& map.map[(int)floor(y)][(int)floor(x)] != 8)
 	{
 		p->j.x = p->j.x + 0.1 * cos(a);
 		p->j.y = p->j.y + 0.1 * sin(a);
@@ -112,6 +123,16 @@ int			key_hook(int keycode, t_param *p)
 		{
 			p->j.item = 2;
 			p->swall = p->swall2;
+		}
+		else if (p->map.map[y][x] == 8 && p->exitKey == 1)
+		{
+			if (p->wexitState == 0)
+			{
+				p->wexit = p->wexit2;
+				p->wexitState = 1;
+			}
+			else if (p->wexitState == 1)
+				ft_exit(p);
 		}
 	}
 	//ft_putnbr(tm.tm_sec); //INCROYABLE ... C'EST LE KEYCODE QUI EST AFFICHE ...

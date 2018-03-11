@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgunzbur <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 11:24:16 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/01/16 16:29:14 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/03/11 12:44:17 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,7 @@ char				*ft_strtolower(char *str);
 char				*ft_strreplacechar(char *str, char toreplace, char replace);
 int					get_next_line(const int fd, char **line);
 int					ft_put(const char *format, ...);
+int					ft_intchr(int **tab, const int n, const int sizex,
+	const int sizey);
 
 #endif
