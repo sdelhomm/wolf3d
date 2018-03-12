@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:38:43 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 13:16:08 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 14:53:15 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define SERPI 13
 # define WALL 14
 # define TAG 15
+#define SPIKE 16
 # define HB 0.3
 
 # define FILE_NORTH "texture/Assembly.xpm"
