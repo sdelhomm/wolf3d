@@ -5,13 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
-/*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 17:55:20 by sdelhomm         ###   ########.fr       */
-=======
-/*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 17:55:16 by tgunzbur         ###   ########.fr       */
->>>>>>> f9ec37f8bc9d53d2cc33e60f3b21a49263054b03
+/*   Created: 2018/03/12 17:58:51 by sdelhomm          #+#    #+#             */
+/*   Updated: 2018/03/12 18:47:52 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,11 +158,12 @@ int			key_hook(int keycode, t_param *p)
 				p->wexitState = 1;
 			}
 			else if (p->wexitState == 1)
+			{
 				p->menuState = 4;
+				p->cursorState = 1;
+			}
 		}
 	}
-	//ft_putnbr(time(NULL) - p->tm); //INCROYABLE ... C'EST LE KEYCODE QUI EST AFFICHE ...
-	//ft_putchar('\n');
 	if (keycode == 126 && p->menuState == 1)
 	{
 		if (p->cursorState - 1 != 0)
@@ -201,7 +197,13 @@ int			key_hook(int keycode, t_param *p)
 				ft_exit(p);
 		}
 		else if (p->menuState == 2 || p->menuState == 3 || p->menuState == 4)
+		{
+			if (p->menuState == 2)
+				p->cursorState = 2;
+			else
+				p->cursorState = 1;
 			p->menuState = 1;
+		}
 	}
 	if (keycode == 18)
 		p->j.a_item = 1;

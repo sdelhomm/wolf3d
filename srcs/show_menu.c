@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 16:36:48 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 17:40:13 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 18:18:58 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		ft_show_menu(t_param *p)
 int		ft_death(t_param *p)
 {
 	free_map(p->map);
-	p->j.a = 1;
 	get_map(p->arg1, map_len(p->arg1, &p->map), &p->j);
 	*p = init(*p);
 	mlx_put_image_to_window(p->mlx, p->win, p->ptr_img9, 0, 0);
@@ -41,7 +40,6 @@ int		ft_death(t_param *p)
 int		ft_win(t_param *p)
 {
 	free_map(p->map);
-	p->j.a = 1;
 	get_map(p->arg1, map_len(p->arg1, &p->map), &p->j);
 	*p = init(*p);
 	mlx_put_image_to_window(p->mlx, p->win, p->ptr_img8, 0, 0);
