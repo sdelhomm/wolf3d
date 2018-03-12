@@ -5,8 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
 /*   Updated: 2018/03/12 17:55:20 by sdelhomm         ###   ########.fr       */
+=======
+/*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
+/*   Updated: 2018/03/12 17:55:16 by tgunzbur         ###   ########.fr       */
+>>>>>>> f9ec37f8bc9d53d2cc33e60f3b21a49263054b03
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +26,10 @@ int		events_mouse(int bc, int x, int y, t_param *p)
 		if (x >= 0 && y >= 0 &&
 			x < p->map.x && y < p->map.y && p->map.map[y][x] == 1 &&
 			(p->j.item == 1 || p->j.item == 3) && p->j.a_item == 2)
+		{
 			p->map.map[(int)floor(y)][(int)floor(x)] = 0;
+			p->tm -= 5;
+		}
 		else if (x >= 0 && y >= 0 &&
 			x < p->map.x && y < p->map.y && p->map.map[y][x] == 3 &&
 			(p->j.item == 2 || p->j.item == 3) && p->j.a_item == 1)
