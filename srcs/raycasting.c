@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 15:43:32 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/12 13:20:06 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 14:53:25 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int		set_direction(double x, double y, t_player j, t_param *p)
 		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 4 ? SERPI : dir);
 		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 5 ? WALL : dir);
 		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 8 ? END : dir);
+		dir = (p->map.map[(int)floor(p->ry)][(int)floor(p->rx)] == 6 ? SPIKE : dir);
 	}
 	return (dir);
 }
@@ -61,7 +62,8 @@ double	raycast(double coefx, double coefy, t_player j, t_param *p)
 			p->map.map[(int)floor(y)][(int)floor(x)] != 3 &&
 			p->map.map[(int)floor(y)][(int)floor(x)] != 4 &&
 			p->map.map[(int)floor(y)][(int)floor(x)] != 5 &&
-			p->map.map[(int)floor(y)][(int)floor(x)] != 8)
+			p->map.map[(int)floor(y)][(int)floor(x)] != 8 &&
+			p->map.map[(int)floor(y)][(int)floor(x)] != 6)
 	{
 		x += coefx / 500;
 		y += coefy / 500;
