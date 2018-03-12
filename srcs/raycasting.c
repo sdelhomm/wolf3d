@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/13 15:43:32 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/12 17:33:17 by sdelhomm         ###   ########.fr       */
+/*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
+/*   Updated: 2018/03/12 17:53:06 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,9 @@ int		wolf3d(t_param *p, int fps, int time)
 		a += ((double)60 / (double)SCREEN_X);
 	}
 	mlx_put_image_to_window(p->mlx, p->win, p->ptr_img, 0, 0);
-	if (p->j.item == 1)
+	if ((p->j.item == 1 || p->j.item == 3) && p->j.a_item == 2)
 		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img2, p->wx, p->wy);
-	if (p->j.item == 2)
+	if ((p->j.item == 2 || p->j.item == 3) && p->j.a_item == 1)
 		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img3, p->wx, p->wy);
 	if (p->exitKey == 1)
 		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img4,

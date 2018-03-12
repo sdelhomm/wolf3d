@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 15:10:29 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 17:39:23 by sdelhomm         ###   ########.fr       */
+/*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
+/*   Updated: 2018/03/12 17:54:39 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct	s_player
 	double	y;
 	double	a;
 	int		item;
+	int		a_item;
 }				t_player;
 
 typedef struct	s_map
