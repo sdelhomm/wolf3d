@@ -6,7 +6,7 @@
 /*   By: tgunzbur <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 14:34:13 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/02/20 12:31:43 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/03/12 16:59:50 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int		check_if_start(t_map *map, t_player *j, char *line)
 	if (map->map[map->y][map->x] == 9)
 	{
 		map->map[map->y][map->x] = 0;
-		j->x = map->x;
-		j->y = map->y;
+		j->x = map->x + 0.5;
+		j->y = map->y + 0.5;
 		j->a--;
 	}
 	return (0);
