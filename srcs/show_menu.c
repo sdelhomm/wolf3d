@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 16:36:48 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 17:40:13 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 18:45:52 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int		ft_death(t_param *p)
 {
 	free_map(p->map);
 	p->j.a = 1;
-	get_map(p->arg1, map_len(p->arg1, &p->map), &p->j);
+	p->tags = 0;
+	get_map(p->arg1, map_len(p->arg1, &p->map), &p->j, p);
 	*p = init(*p);
 	mlx_put_image_to_window(p->mlx, p->win, p->ptr_img9, 0, 0);
 	return (0);
@@ -40,11 +41,17 @@ int		ft_death(t_param *p)
 
 int		ft_win(t_param *p)
 {
+	char	*score;
+
+	score = ft_itoa(p->win_time);
 	free_map(p->map);
 	p->j.a = 1;
-	get_map(p->arg1, map_len(p->arg1, &p->map), &p->j);
+	p->tags = 0;
+	get_map(p->arg1, map_len(p->arg1, &p->map), &p->j, p);
 	*p = init(*p);
 	mlx_put_image_to_window(p->mlx, p->win, p->ptr_img8, 0, 0);
+	mlx_string_put(p->mlx, p->win, 840, 470, 0x00000000, score);
+	free(score);
 	return (0);
 }
 

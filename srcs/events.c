@@ -5,13 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
 /*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 17:55:20 by sdelhomm         ###   ########.fr       */
-=======
-/*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 17:55:16 by tgunzbur         ###   ########.fr       */
->>>>>>> f9ec37f8bc9d53d2cc33e60f3b21a49263054b03
+/*   Updated: 2018/03/12 18:43:11 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +30,8 @@ int		events_mouse(int bc, int x, int y, t_param *p)
 			(p->j.item == 2 || p->j.item == 3) && p->j.a_item == 1)
 		{
 			p->map.map[(int)floor(y)][(int)floor(x)] = 5;
-			if (!(ft_intchr(p->map.map, 3, p->map.x, p->map.y)))
+			p->clean_tag++;
+			if (p->clean_tag == p->tags)
 				p->exitKey = 1;
 		}
 	}
@@ -163,7 +159,10 @@ int			key_hook(int keycode, t_param *p)
 				p->wexitState = 1;
 			}
 			else if (p->wexitState == 1)
+			{
 				p->menuState = 4;
+				p->win_time = time(NULL) - p->tm;
+			}
 		}
 	}
 	//ft_putnbr(time(NULL) - p->tm); //INCROYABLE ... C'EST LE KEYCODE QUI EST AFFICHE ...
