@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/15 15:05:49 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/12 15:14:21 by sdelhomm         ###   ########.fr       */
+/*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
+/*   Updated: 2018/03/12 15:41:53 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_param	init(t_param p)
 	p.ptr_img7 = mlx_xpm_file_to_image(p.mlx, FILE_CURSOR, &p.img_x3, &p.img_y3);
 	p.cursor = mlx_get_data_addr(p.ptr_img7, &p.sl, &p.end, &p.bpp);
 	p.ptr_img8 = mlx_xpm_file_to_image(p.mlx, FILE_WIN, &p.img_x3, &p.img_y3);
-	p.win = mlx_get_data_addr(p.ptr_img8, &p.sl, &p.end, &p.bpp);
+	p.s_win = mlx_get_data_addr(p.ptr_img8, &p.sl, &p.end, &p.bpp);
 	p.ptr_img9 = mlx_xpm_file_to_image(p.mlx, FILE_LOSE, &p.img_x3, &p.img_y3);
 	p.lose = mlx_get_data_addr(p.ptr_img9, &p.sl, &p.end, &p.bpp);
 	p.ptr_img = mlx_new_image(p.mlx, SCREEN_X, SCREEN_Y);
@@ -92,6 +92,7 @@ int		main(int argc, char **argv)
 	p.wexitState = 0;
 	p.pos_x = 0;
 	p.exitKey = 0;
+	p.j.v = 1;
 	if (argc != 2)
 	{
 		ft_putstr_fd("usage: ./wolf3d [map]\n", 2);

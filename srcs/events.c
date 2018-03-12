@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/15 15:37:52 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 15:30:19 by sdelhomm         ###   ########.fr       */
+/*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
+/*   Updated: 2018/03/12 15:51:11 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ int			key_hook(int keycode, t_param *p)
 		}
 	}
 	if (!check_collision(keycode, p, p->map))
-		exit (0);
+		p->j.v = 0;
 	return (0);
 }
 
