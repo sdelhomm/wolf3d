@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:05:49 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/12 13:15:55 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 14:59:16 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_param	init(t_param p)
 	p.wexit = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
 	p.ptr_img = mlx_xpm_file_to_image(p.mlx, FILE_WEXIT2, &p.img_x, &p.img_y);
 	p.wexit2 = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
+	p.ptr_img = mlx_xpm_file_to_image(p.mlx, FILE_SPIKES, &p.img_x, &p.img_y);
+	p.spike = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
 	p.ptr_img2 = mlx_xpm_file_to_image(p.mlx, FILE_HAMMER, &p.img_x2, &p.img_y2);
 	p.weap = mlx_get_data_addr(p.ptr_img2, &p.sl, &p.end, &p.bpp);
 	p.ptr_img3 = mlx_xpm_file_to_image(p.mlx, FILE_WSERPI, &p.img_x2, &p.img_y2);
@@ -62,6 +64,10 @@ t_param	init(t_param p)
 	p.tuto = mlx_get_data_addr(p.ptr_img6, &p.sl, &p.end, &p.bpp);
 	p.ptr_img7 = mlx_xpm_file_to_image(p.mlx, FILE_CURSOR, &p.img_x3, &p.img_y3);
 	p.cursor = mlx_get_data_addr(p.ptr_img7, &p.sl, &p.end, &p.bpp);
+	p.ptr_img8 = mlx_xpm_file_to_image(p.mlx, FILE_WIN, &p.img_x3, &p.img_y3);
+	p.win = mlx_get_data_addr(p.ptr_img8, &p.sl, &p.end, &p.bpp);
+	p.ptr_img9 = mlx_xpm_file_to_image(p.mlx, FILE_LOSE, &p.img_x3, &p.img_y3);
+	p.lose = mlx_get_data_addr(p.ptr_img9, &p.sl, &p.end, &p.bpp);
 	p.ptr_img = mlx_new_image(p.mlx, SCREEN_X, SCREEN_Y);
 	p.img = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
 	CGDisplayHideCursor((CGDirectDisplayID)NULL);

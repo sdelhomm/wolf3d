@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:38:43 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 13:16:08 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 14:57:29 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@
 # define FILE_MENU "texture/menu.xpm"
 # define FILE_TUTO "texture/tuto.xpm"
 # define FILE_CURSOR "texture/cursor.xpm"
+# define FILE_SPIKES "texture/spikes.xpm"
+# define FILE_WIN "texture/win_screen.xpm"
+# define FILE_LOSE "texture/die.xpm"
 
 # include "../libft/includes/libft.h"
 # include <mlx.h>
@@ -84,6 +87,8 @@ typedef struct	s_param
 	void		*ptr_img5;
 	void		*ptr_img6;
 	void		*ptr_img7;
+	void		*ptr_img8;
+	void		*ptr_img9;
 	char		*img;
 	int			bpp;
 	int			sl;
@@ -105,10 +110,13 @@ typedef struct	s_param
 	char		*swall2;
 	char		*wexit;
 	char		*wexit2;
+	char		*spike;
 	char		*key;
 	char		*menu;
 	char		*cursor;
 	char		*tuto;
+	char		*win;
+	char		*lose;
 	int			cursorState;
 	int			menuState;
 	int			wexitState;
