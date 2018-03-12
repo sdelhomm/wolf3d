@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 15:10:29 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 15:17:33 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/03/12 16:29:25 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct	s_player
 	double	y;
 	double	a;
 	int		item;
+	int		v;
 }				t_player;
 
 typedef struct	s_map
@@ -156,5 +157,8 @@ int				hook(t_param *p);
 int				events_mouse(int bc, int x, int y, t_param *p);
 int				ft_exit(t_param *p);
 int				ft_show_menu(t_param *p);
+int				ft_death(t_param *p);
+int				ft_win(t_param *p);
+int				free_map(t_map map);
 
 #endif

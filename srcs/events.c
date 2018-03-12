@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/15 15:37:52 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 15:18:52 by tgunzbur         ###   ########.fr       */
+/*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
+/*   Updated: 2018/03/12 15:51:11 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,14 +188,14 @@ int			key_hook(int keycode, t_param *p)
 			else if (p->cursorState == 3)
 				ft_exit(p);
 		}
-		else if (p->menuState == 2)
+		else if (p->menuState == 2 || p->menuState == 3)
 		{
 			p->menuState = 1;
 			p->cursorState = 2;
 		}
 	}
 	if (!check_collision(keycode, p, p->map))
-		exit (0);
+		p->j.v = 0;
 	return (0);
 }
 

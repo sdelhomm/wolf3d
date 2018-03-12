@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/11 15:04:56 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 15:19:24 by tgunzbur         ###   ########.fr       */
+/*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
+/*   Updated: 2018/03/12 16:30:47 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ int		ft_show_menu(t_param *p)
 		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img7, 450, 740);
 	return (0);
 }
-/*
+
 int		ft_death(t_param *p)
 {
-	int a_time;
-
+	p->menuState = 3;
 	mlx_put_image_to_window(p->mlx, p->win, p->ptr_img9, 0, 0);
-	a_time = time(NULL) - p->tm;
 	return (0);
+}
+
+/*int		ft_win(t_param *p)
+{
+	exit(0);
 }*/

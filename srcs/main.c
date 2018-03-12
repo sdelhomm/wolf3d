@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:05:49 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/12 16:26:24 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/03/12 16:29:42 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ t_param	init(t_param p)
 int		ft_exit(t_param *p)
 {
 	mlx_clear_window(p->mlx, p->win);
+	free_map(p->map);
 	exit(0);
 	return (0);
 }

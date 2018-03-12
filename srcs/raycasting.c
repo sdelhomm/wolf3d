@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 15:43:32 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/12 14:53:25 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:42:53 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ int		wolf3d(t_param *p, int fps, int time)
 			SCREEN_X * 0.05, SCREEN_Y * 0.05);
 	aff_nb(p, fps, time);
 	ft_show_menu(p);
+	if (!p->j.v)
+		ft_death(p);
 	mlx_destroy_image(p->mlx, p->ptr_img);
 	return (0);
 }

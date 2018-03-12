@@ -6,7 +6,7 @@
 /*   By: tgunzbur <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 16:20:13 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/12 16:22:03 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/03/12 16:31:35 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		free_map(t_map map)
 {
 	int	y;
 
+	y = 0;
 	while (y < map.y)
 		free(map.map[y++]);
 	free(map.map);
