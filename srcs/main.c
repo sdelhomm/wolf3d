@@ -6,14 +6,19 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:05:49 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/12 15:17:54 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/03/12 16:26:24 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-t_param	init(t_param p)
+t_param	init_value(t_param p)
 {
+	p.j.item = 0;
+	p.hwallState = 0;
+	p.wexitState = 0;
+	p.pos_x = 0;
+	p.exitKey = 0;
 	p.tm =	time(NULL);
 	p.lx = SCREEN_X / 2;
 	p.ly = SCREEN_Y / 2;
@@ -22,6 +27,12 @@ t_param	init(t_param p)
 	p.wy = SCREEN_Y * 0.5;
 	p.menuState = 1;
 	p.cursorState = 1;
+	CGWarpMouseCursorPosition(CGPointMake(0, 0));
+	return (p);
+}
+
+t_param	init(t_param p)
+{
 	p.mlx = mlx_init();
 	p.win = mlx_new_window(p.mlx, SCREEN_X, SCREEN_Y, "Wolf3D");
 	p.ptr_img = mlx_xpm_file_to_image(p.mlx, FILE_NORTH, &p.img_x, &p.img_y);
@@ -71,8 +82,7 @@ t_param	init(t_param p)
 	p.ptr_img = mlx_new_image(p.mlx, SCREEN_X, SCREEN_Y);
 	p.img = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
 	CGDisplayHideCursor((CGDirectDisplayID)NULL);
-	CGWarpMouseCursorPosition(CGPointMake(0, 0));
-	return (p);
+	return (init_value(p));
 }
 
 int		ft_exit(t_param *p)
@@ -87,11 +97,6 @@ int		main(int argc, char **argv)
 	t_param	p;
 
 	p.j.a = 1;
-	p.j.item = 0;
-	p.hwallState = 0;
-	p.wexitState = 0;
-	p.pos_x = 0;
-	p.exitKey = 0;
 	if (argc != 2)
 	{
 		ft_putstr_fd("usage: ./wolf3d [map]\n", 2);
