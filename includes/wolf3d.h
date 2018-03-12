@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:38:43 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 10:47:23 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 13:16:08 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@
 # define FILE_WEXIT "texture/end_door.xpm"
 # define FILE_WEXIT2 "texture/o_end_door.xpm"
 # define FILE_KEY "texture/key.xpm"
+# define FILE_MENU "texture/menu.xpm"
+# define FILE_TUTO "texture/tuto.xpm"
+# define FILE_CURSOR "texture/cursor.xpm"
 
 # include "../libft/includes/libft.h"
 # include <mlx.h>
@@ -104,6 +107,10 @@ typedef struct	s_param
 	char		*wexit2;
 	char		*key;
 	char		*menu;
+	char		*cursor;
+	char		*tuto;
+	int			cursorState;
+	int			menuState;
 	int			wexitState;
 	int			hwallState;
 	int			exitKey;
@@ -125,11 +132,13 @@ typedef struct	s_param
 	double		ry;
 	double		rx;
 	int			tm;
+	int			fps;
+	int			time;
 }				t_param;
 
 int				get_map(char *file, t_map *map, t_player *j);
 t_map			*map_len(char *file, t_map *map);
-int				wolf3d(t_param *p);
+int				wolf3d(t_param *p, int fps, int time);
 int				key_hook(int keycode, t_param *p);
 int				mouse_hook(int x, int y, t_param *p);
 int				draw_pixel(int x, int y, t_param *p, int color);
@@ -137,5 +146,6 @@ int				copy_pixel(int x, int y, int y_img, t_param *p);
 int				hook(t_param *p);
 int				events_mouse(int bc, int x, int y, t_param *p);
 int				ft_exit(t_param *p);
+int				ft_show_menu(t_param *p);
 
 #endif

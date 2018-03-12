@@ -6,7 +6,7 @@
 #    By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/15 17:57:32 by sdelhomm          #+#    #+#              #
-#    Updated: 2018/02/20 11:23:48 by tgunzbur         ###   ########.fr        #
+#    Updated: 2018/03/12 11:37:38 by sdelhomm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC = get_map.c \
 	  raycasting.c \
 	  events.c \
 	  draw.c \
+	  show_menu.c \
 
 SRCPATH = ./srcs/
 

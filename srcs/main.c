@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:05:49 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/12 10:47:51 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 13:15:55 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_param	init(t_param p)
 	p.vy = SCREEN_Y / 2;
 	p.wx = SCREEN_X * 0.5;
 	p.wy = SCREEN_Y * 0.5;
+	p.menuState = 1;
+	p.cursorState = 1;
 	p.mlx = mlx_init();
 	p.win = mlx_new_window(p.mlx, SCREEN_X, SCREEN_Y, "Wolf3D");
 	p.ptr_img = mlx_xpm_file_to_image(p.mlx, FILE_NORTH, &p.img_x, &p.img_y);
@@ -54,6 +56,12 @@ t_param	init(t_param p)
 	p.weap2 = mlx_get_data_addr(p.ptr_img3, &p.sl, &p.end, &p.bpp);
 	p.ptr_img4 = mlx_xpm_file_to_image(p.mlx, FILE_KEY, &p.img_x3, &p.img_y3);
 	p.key = mlx_get_data_addr(p.ptr_img4, &p.sl, &p.end, &p.bpp);
+	p.ptr_img5 = mlx_xpm_file_to_image(p.mlx, FILE_MENU, &p.img_x3, &p.img_y3);
+	p.menu = mlx_get_data_addr(p.ptr_img5, &p.sl, &p.end, &p.bpp);
+	p.ptr_img6 = mlx_xpm_file_to_image(p.mlx, FILE_TUTO, &p.img_x3, &p.img_y3);
+	p.tuto = mlx_get_data_addr(p.ptr_img6, &p.sl, &p.end, &p.bpp);
+	p.ptr_img7 = mlx_xpm_file_to_image(p.mlx, FILE_CURSOR, &p.img_x3, &p.img_y3);
+	p.cursor = mlx_get_data_addr(p.ptr_img7, &p.sl, &p.end, &p.bpp);
 	p.ptr_img = mlx_new_image(p.mlx, SCREEN_X, SCREEN_Y);
 	p.img = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
 	CGDisplayHideCursor((CGDirectDisplayID)NULL);
@@ -89,7 +97,7 @@ int		main(int argc, char **argv)
 		return (-1);
 	}
 	p = init(p);
-	wolf3d(&p);
+	wolf3d(&p, 0, 0);
 	mlx_loop_hook(p.mlx, hook, &p);
 	mlx_hook(p.win, 6, 1L << 6, mouse_hook, &p);
 	mlx_hook(p.win, 2, 3, key_hook, &p);

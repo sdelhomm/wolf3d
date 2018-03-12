@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:37:52 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 10:55:25 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 13:21:35 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static void	check_collision(int kc, t_param *p, t_map map)
 	x = p->j.x;
 	y = p->j.y;
 	a = p->j.a * M_PI / 180;
-	a += (kc == 123 ? -M_PI_2 : 0);
-	a += (kc == 124 ? M_PI_2 : 0);
-	a += (kc == 125 ? M_PI : 0);
+	a += (kc == 0 ? -M_PI_2 : 0);
+	a += (kc == 2 ? M_PI_2 : 0);
+	a += (kc == 1 ? M_PI : 0);
 	x = x + HB * cos(a);
 	y = y + HB * sin(a);
-	if (kc >= 123 && kc <= 126 && x >= 0 && y >= 0 && x < map.x && y < map.y &&
+	if (kc >= 0 && kc <= 13 && x >= 0 && y >= 0 && x < map.x && y < map.y &&
 		map.map[(int)floor(y - 0.2 * sin(a))][(int)floor(x - 0.2 * cos(a))] != 1
 		&& map.map[(int)floor(y)][(int)floor(x)] != 1 &&
 		map.map[(int)floor(y - 0.2 * sin(a))][(int)floor(x - 0.2 * cos(a))] != 2
@@ -136,7 +136,45 @@ int			key_hook(int keycode, t_param *p)
 		}
 	}
 	//ft_putnbr(time(NULL) - p->tm); //INCROYABLE ... C'EST LE KEYCODE QUI EST AFFICHE ...
-	//ft_putchar('\n');               
+	//ft_putchar('\n');
+	if (keycode == 126 && p->menuState == 1)
+	{
+		if (p->cursorState - 1 != 0)
+			p->cursorState--;
+		else
+			p->cursorState = 3;
+	}
+	if (keycode == 125 && p->menuState == 1)
+	{
+		if (p->cursorState + 1 != 4)
+			p->cursorState++;
+		else
+			p->cursorState = 1;
+	}
+	if (keycode == 36)
+	{
+		if (p->menuState == 1)
+		{
+			if (p->cursorState == 1)
+			{
+				p->tm = time(NULL);
+				p->menuState = 0;
+				p->cursorState = 0;
+			}
+			else if (p->cursorState == 2)
+			{
+				p->menuState = 2;
+				p->cursorState = 0;
+			}
+			else if (p->cursorState == 3)
+				ft_exit(p);
+		}
+		else if (p->menuState == 2)
+		{
+			p->menuState = 1;
+			p->cursorState = 2;
+		}
+	}
 	check_collision(keycode, p, p->map);
 	return (0);
 }
@@ -144,15 +182,16 @@ int			key_hook(int keycode, t_param *p)
 int			hook(t_param *p)
 {
 	static int	state = 1;
+	static int	cfps = 0;
+	static int	prevtime = 0;
 	static int	fps = 0;
-	static int	previmg = 0;
-	fps++;
-	if (previmg != time(NULL) - p->tm)
+	
+	cfps++;
+	if (prevtime != time(NULL) - p->tm)
 	{
-		previmg = time(NULL) - p->tm;
-		ft_putnbr(fps);
-		ft_putchar('\n');
-		fps = 0;
+		prevtime = time(NULL) - p->tm;
+		fps = cfps;
+		cfps = 0;
 	}
 	if (p->wy > SCREEN_Y * 0.535 && state == 1)
 		state = -1;
@@ -162,6 +201,6 @@ int			hook(t_param *p)
 	p->wx += (double)state / 2;
 	p->ptr_img = mlx_new_image(p->mlx, SCREEN_X, SCREEN_Y);
 	p->img = mlx_get_data_addr(p->ptr_img, &p->sl, &p->end, &p->bpp);
-	wolf3d(p);
+	wolf3d(p, fps, prevtime);
 	return (0);
 }

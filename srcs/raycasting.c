@@ -6,12 +6,25 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 15:43:32 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/11 15:16:28 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 13:20:06 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 #include <stdio.h>
+
+void    aff_nb(t_param *p, int fps, int time)
+{
+    char    *str_time;
+    char    *str_fps;
+
+    str_time = ft_itoa(time);
+    str_fps = ft_itoa(fps);
+    mlx_string_put(p->mlx, p->win, SCREEN_X / 2 - 10, SCREEN_Y * 0.01, 0xFFFFFF, str_time);
+    mlx_string_put(p->mlx, p->win, SCREEN_X * 0.975, SCREEN_Y * 0.01, 0xFFFFFF, str_fps);
+    free(str_time);
+    free(str_fps);
+}
 
 int		set_direction(double x, double y, t_player j, t_param *p)
 {
@@ -89,7 +102,7 @@ void	draw_column(double d, t_param *p, int x)
 		draw_pixel(x, y++, p, FLOOR);
 }
 
-int		wolf3d(t_param *p)
+int		wolf3d(t_param *p, int fps, int time)
 {
 	double	a;
 	double	d;
@@ -114,7 +127,8 @@ int		wolf3d(t_param *p)
 	if (p->exitKey == 1)
 		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img4,
 			SCREEN_X * 0.05, SCREEN_Y * 0.05);
-	//show_menu(p);
+	aff_nb(p, fps, time);
+	ft_show_menu(p);
 	mlx_destroy_image(p->mlx, p->ptr_img);
 	return (0);
 }
