@@ -6,8 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 16:30:47 by tgunzbur         ###   ########.fr       */
-/*                                                                            */
+/*   Updated: 2018/03/12 16:34:50 by tgunzbur         ###   ########.fr       */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
@@ -34,7 +33,9 @@ int		ft_death(t_param *p)
 	return (0);
 }
 
-/*int		ft_win(t_param *p)
+/*
+int		ft_win(t_param *p)
 {
 	exit(0);
-}*/
+}
+*/
