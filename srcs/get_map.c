@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 17:53:23 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 18:32:34 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		ft_tabline(char **tab)
 	return (count);
 }
 
-int		check_if_start(t_map *map, t_player *j, char *line)
+int		check_if_start_tag(t_map *map, t_player *j, char *line, t_param *p)
 {
 	free(line);
 	if (map->map[map->y][map->x] == 9)
@@ -54,10 +54,12 @@ int		check_if_start(t_map *map, t_player *j, char *line)
 		j->y = map->y + 0.5;
 		j->a--;
 	}
+	if (map->map[map->y][map->x] == 3)
+		p->tags++;
 	return (0);
 }
 
-int		get_map(char *file, t_map *map, t_player *j)
+int		get_map(char *file, t_map *map, t_player *j, t_param *p)
 {
 	int		fd;
 	char	*line;
@@ -77,7 +79,7 @@ int		get_map(char *file, t_map *map, t_player *j)
 		while (s_line[++map->x])
 		{
 			map->map[map->y][map->x] = ft_atoi(s_line[map->x]);
-			check_if_start(map, j, s_line[map->x]);
+			check_if_start_tag(map, j, s_line[map->x], p);
 		}
 		free(s_line);
 	}

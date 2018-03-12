@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 16:36:48 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 18:20:24 by sdelhomm         ###   ########.fr       */
+/*   Created: 2018/03/12 19:01:10 by sdelhomm          #+#    #+#             */
+/*   Updated: 2018/03/12 19:01:21 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 t_param	init_value(t_param p)
 {
+	p.j.a = 0;
 	p.j.item = 0;
 	p.hwallState = 0;
 	p.wexitState = 0;
-	p.pos_x = 0;
 	p.exitKey = 0;
 	p.tm = time(NULL);
 	p.lx = SCREEN_X / 2;
@@ -26,6 +26,7 @@ t_param	init_value(t_param p)
 	p.wx = SCREEN_X * 0.5;
 	p.wy = SCREEN_Y * 0.5;
 	p.cursorState = 1;
+	p.clean_tag = 0;
 	return (p);
 }
 
@@ -94,7 +95,9 @@ int		main(int argc, char **argv)
 
 	p.arg1 = argv[1];
 	p.j.a = 1;
+	p.tags = 0;
 	p.menuState = 1;
+	p.pos_x = 0;
 	p.mlx = mlx_init();
 	p.win = mlx_new_window(p.mlx, SCREEN_X, SCREEN_Y, "Wolf3D");
 	CGWarpMouseCursorPosition(CGPointMake(0, 0));
@@ -104,7 +107,7 @@ int		main(int argc, char **argv)
 		ft_putstr_fd("usage: ./wolf3d [map]\n", 2);
 		return (-1);
 	}
-	if (get_map(p.arg1, map_len(p.arg1, &p.map), &p.j) < 0 || p.j.a != 0)
+	if (get_map(p.arg1, map_len(p.arg1, &p.map), &p.j, &p) < 0 || p.j.a != 0)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (-1);

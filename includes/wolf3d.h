@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 17:54:39 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 18:41:17 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,9 +145,12 @@ typedef struct	s_param
 	int			fps;
 	int			time;
 	char		*arg1;
+	int			clean_tag;
+	int			tags;
+	int			win_time;
 }				t_param;
 
-int				get_map(char *file, t_map *map, t_player *j);
+int				get_map(char *file, t_map *map, t_player *j, t_param *p);
 t_map			*map_len(char *file, t_map *map);
 int				wolf3d(t_param *p, int fps, int time);
 int				key_hook(int keycode, t_param *p);

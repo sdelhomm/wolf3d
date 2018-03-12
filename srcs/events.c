@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 17:58:51 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 18:47:52 by sdelhomm         ###   ########.fr       */
+/*   Created: 2018/03/12 19:01:10 by sdelhomm          #+#    #+#             */
+/*   Updated: 2018/03/12 19:02:08 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int		events_mouse(int bc, int x, int y, t_param *p)
 			(p->j.item == 2 || p->j.item == 3) && p->j.a_item == 1)
 		{
 			p->map.map[(int)floor(y)][(int)floor(x)] = 5;
-			if (!(ft_intchr(p->map.map, 3, p->map.x, p->map.y)))
+			p->clean_tag++;
+			if (p->clean_tag == p->tags)
 				p->exitKey = 1;
 		}
 	}
@@ -161,6 +162,7 @@ int			key_hook(int keycode, t_param *p)
 			{
 				p->menuState = 4;
 				p->cursorState = 1;
+				p->win_time = time(NULL) - p->tm;
 			}
 		}
 	}

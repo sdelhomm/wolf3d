@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 17:53:06 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 18:27:21 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,23 @@ void    aff_nb(t_param *p, int fps, int time)
 {
     char    *str_time;
     char    *str_fps;
+	char	*str_clear_tag;
+	char	*str_tags;
+	char	*str_score;
 
     str_time = ft_itoa(time);
     str_fps = ft_itoa(fps);
-    mlx_string_put(p->mlx, p->win, SCREEN_X / 2 - 10, SCREEN_Y * 0.01, 0xFFFFFF, str_time);
+	str_clear_tag = ft_itoa(p->clean_tag);
+	str_tags = ft_itoa(p->tags);
+	str_score = ft_strjoin(str_clear_tag, " / ");
+	free(str_clear_tag);
+	str_clear_tag = ft_strjoin(str_score, str_tags);
+	free(str_score);
+	free(str_tags);
+	mlx_string_put(p->mlx, p->win, SCREEN_X / 2 - 10, SCREEN_Y * 0.01, 0xFFFFFF, str_time);
     mlx_string_put(p->mlx, p->win, SCREEN_X * 0.975, SCREEN_Y * 0.01, 0xFFFFFF, str_fps);
+    mlx_string_put(p->mlx, p->win, SCREEN_X * 0.025, SCREEN_Y * 0.01, 0xFFFFFF, str_clear_tag);
+	free(str_clear_tag);
     free(str_time);
     free(str_fps);
 }
