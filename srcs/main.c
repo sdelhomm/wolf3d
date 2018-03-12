@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:05:49 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/11 13:05:52 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 10:47:51 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 t_param	init(t_param p)
 {
+	p.tm =	time(NULL);
 	p.lx = SCREEN_X / 2;
 	p.ly = SCREEN_Y / 2;
 	p.vy = SCREEN_Y / 2;

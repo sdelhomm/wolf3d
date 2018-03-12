@@ -6,11 +6,12 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 13:38:43 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/11 13:03:37 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 10:47:23 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //Vue deformee proche d'un mur quand on regarde vers le haut ou le bas
+//MAIS : sur la demo des ressources du sujet il y a le meme soucis...
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
@@ -77,6 +78,9 @@ typedef struct	s_param
 	void		*ptr_img2;
 	void		*ptr_img3;
 	void		*ptr_img4;
+	void		*ptr_img5;
+	void		*ptr_img6;
+	void		*ptr_img7;
 	char		*img;
 	int			bpp;
 	int			sl;
@@ -99,6 +103,7 @@ typedef struct	s_param
 	char		*wexit;
 	char		*wexit2;
 	char		*key;
+	char		*menu;
 	int			wexitState;
 	int			hwallState;
 	int			exitKey;
@@ -119,6 +124,7 @@ typedef struct	s_param
 	double		wy;
 	double		ry;
 	double		rx;
+	int			tm;
 }				t_param;
 
 int				get_map(char *file, t_map *map, t_player *j);

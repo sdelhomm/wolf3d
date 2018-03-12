@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:37:52 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/11 13:07:00 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 10:55:25 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int			key_hook(int keycode, t_param *p)
 {
 	int x;
 	int y;
-	//struct tm tm;
+
 	if (keycode == 53)
 		exit(0);
 	if (keycode == 14)
@@ -135,7 +135,7 @@ int			key_hook(int keycode, t_param *p)
 				ft_exit(p);
 		}
 	}
-	//ft_putnbr(tm.tm_sec); //INCROYABLE ... C'EST LE KEYCODE QUI EST AFFICHE ...
+	//ft_putnbr(time(NULL) - p->tm); //INCROYABLE ... C'EST LE KEYCODE QUI EST AFFICHE ...
 	//ft_putchar('\n');               
 	check_collision(keycode, p, p->map);
 	return (0);
@@ -143,8 +143,17 @@ int			key_hook(int keycode, t_param *p)
 
 int			hook(t_param *p)
 {
-	static int state = 1;
-
+	static int	state = 1;
+	static int	fps = 0;
+	static int	previmg = 0;
+	fps++;
+	if (previmg != time(NULL) - p->tm)
+	{
+		previmg = time(NULL) - p->tm;
+		ft_putnbr(fps);
+		ft_putchar('\n');
+		fps = 0;
+	}
 	if (p->wy > SCREEN_Y * 0.535 && state == 1)
 		state = -1;
 	if (p->wy < SCREEN_Y * 0.465 && state == -1)
