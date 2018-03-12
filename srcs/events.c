@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/15 15:37:52 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 15:05:16 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:30:19 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ int			key_hook(int keycode, t_param *p)
 			else if (p->cursorState == 3)
 				ft_exit(p);
 		}
-		else if (p->menuState == 2)
+		else if (p->menuState == 2 || p->menuState == 3)
 		{
 			p->menuState = 1;
 			p->cursorState = 2;
