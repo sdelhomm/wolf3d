@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 15:10:29 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 15:12:46 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:17:33 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct	s_param
 	char		*menu;
 	char		*cursor;
 	char		*tuto;
-	char		*win;
+	char		*s_win;
 	char		*lose;
 	int			cursorState;
 	int			menuState;

@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 12:26:54 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/11 10:56:55 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 15:15:57 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int		copy_pixel(int x, int y, int y_img, t_param *p)
 		img = p->wall;
 	if (p->dir == END)
 		img = p->wexit;
+	if (p->dir == SPIKE)
+		img = p->spike;
 	pos = x * 4 + y * 4 * SCREEN_X;
 	pos_img = (int)p->pos * 4 + y_img * 4 * p->img_x;
 	p->img[pos] = img[pos_img];
