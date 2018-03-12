@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 15:51:11 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 17:43:43 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ int		events_mouse(int bc, int x, int y, t_param *p)
 		x = (int)floor(p->j.x + 0.5 * cos(p->j.a * M_PI / 180));
 		y = (int)floor(p->j.y + 0.5 * sin(p->j.a * M_PI / 180));
 		if (x >= 0 && y >= 0 &&
-			x < p->map.x && y < p->map.y && p->map.map[y][x] == 1 && p->j.item == 1)
+			x < p->map.x && y < p->map.y && p->map.map[y][x] == 1 &&
+			(p->j.item == 1 || p->j.item == 3) && p->j.a_item == 2)
 			p->map.map[(int)floor(y)][(int)floor(x)] = 0;
 		else if (x >= 0 && y >= 0 &&
-			x < p->map.x && y < p->map.y && p->map.map[y][x] == 3 && p->j.item == 2)
+			x < p->map.x && y < p->map.y && p->map.map[y][x] == 3 &&
+			(p->j.item == 2 || p->j.item == 3) && p->j.a_item == 1)
 		{
 			p->map.map[(int)floor(y)][(int)floor(x)] = 5;
 			if (!(ft_intchr(p->map.map, 3, p->map.x, p->map.y)))
@@ -119,12 +121,12 @@ int			key_hook(int keycode, t_param *p)
 	int y;
 
 	if (keycode == 53)
-		exit(0);
+		ft_exit(p);
 	if (keycode == 14)
 	{
 		x = (int)floor(p->j.x + 0.5 * cos(p->j.a * M_PI / 180));
 		y = (int)floor(p->j.y + 0.5 * sin(p->j.a * M_PI / 180));
-		if (p->map.map[y][x] == 2)
+		if (p->map.map[y][x] == 2 && p->j.item % 2 != 1)
 		{
 			if (p->hwallState == 0)
 			{
@@ -133,14 +135,16 @@ int			key_hook(int keycode, t_param *p)
 			}
 			else if (p->hwallState == 1)
 			{
-				p->j.item = 1;
+				p->j.item += 1;
+				p->j.a_item = 2;
 				p->hwall = p->hwall3;
 				p->hwallState = 2;
 			}
 		}
-		else if (p->map.map[y][x] == 4)
+		else if (p->map.map[y][x] == 4 && p->j.item <= 1)
 		{
-			p->j.item = 2;
+			p->j.item += 2;
+			p->j.a_item = 1;
 			p->swall = p->swall2;
 		}
 		else if (p->map.map[y][x] == 8 && p->exitKey == 1)
@@ -194,6 +198,10 @@ int			key_hook(int keycode, t_param *p)
 			p->cursorState = 2;
 		}
 	}
+	if (keycode == 18)
+		p->j.a_item = 1;
+	if (keycode == 19)
+		p->j.a_item = 2;
 	if (!check_collision(keycode, p, p->map))
 		p->j.v = 0;
 	return (0);

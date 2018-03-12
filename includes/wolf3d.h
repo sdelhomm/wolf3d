@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 15:10:29 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 16:35:54 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/03/12 17:22:12 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct	s_player
 	double	y;
 	double	a;
 	int		item;
+	int		a_item;
 	int		v;
 }				t_player;
 
