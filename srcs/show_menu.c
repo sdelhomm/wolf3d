@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 16:23:50 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 16:26:48 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		ft_show_menu(t_param *p)
 int		ft_death(t_param *p)
 {
 	p->menuState = 3;
+	free_map(p->map);
 	mlx_put_image_to_window(p->mlx, p->win, p->ptr_img9, 0, 0);
 	return (0);
 }
