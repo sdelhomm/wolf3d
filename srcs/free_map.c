@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 16:20:13 by tgunzbur          #+#    #+#             */
-/*   Updated: 2018/03/12 16:25:09 by sdelhomm         ###   ########.fr       */
+/*   Created: 2018/03/12 16:36:48 by sdelhomm          #+#    #+#             */
+/*   Updated: 2018/03/12 16:37:02 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		free_map(t_map map)
 {
 	int	y;
 
+	y = 0;
 	while (y < map.y)
 		free(map.map[y++]);
 	free(map.map);

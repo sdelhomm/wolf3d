@@ -5,25 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 16:25:10 by sdelhomm         ###   ########.fr       */
+/*   Created: 2018/03/12 16:36:48 by sdelhomm          #+#    #+#             */
+/*   Updated: 2018/03/12 17:39:09 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-t_param	init(t_param p)
+t_param	init_value(t_param p)
 {
-	p.tm =	time(NULL);
+	p.j.item = 0;
+	p.hwallState = 0;
+	p.wexitState = 0;
+	p.pos_x = 0;
+	p.exitKey = 0;
+	p.tm = time(NULL);
 	p.lx = SCREEN_X / 2;
 	p.ly = SCREEN_Y / 2;
 	p.vy = SCREEN_Y / 2;
 	p.wx = SCREEN_X * 0.5;
 	p.wy = SCREEN_Y * 0.5;
-	p.menuState = 1;
 	p.cursorState = 1;
-	p.mlx = mlx_init();
-	p.win = mlx_new_window(p.mlx, SCREEN_X, SCREEN_Y, "Wolf3D");
+	return (p);
+}
+
+t_param	init(t_param p)
+{
 	p.ptr_img = mlx_xpm_file_to_image(p.mlx, FILE_NORTH, &p.img_x, &p.img_y);
 	p.north = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
 	p.ptr_img = mlx_xpm_file_to_image(p.mlx, FILE_SOUTH, &p.img_x, &p.img_y);
@@ -70,14 +77,13 @@ t_param	init(t_param p)
 	p.lose = mlx_get_data_addr(p.ptr_img9, &p.sl, &p.end, &p.bpp);
 	p.ptr_img = mlx_new_image(p.mlx, SCREEN_X, SCREEN_Y);
 	p.img = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
-	CGDisplayHideCursor((CGDirectDisplayID)NULL);
-	CGWarpMouseCursorPosition(CGPointMake(0, 0));
-	return (p);
+	return (init_value(p));
 }
 
 int		ft_exit(t_param *p)
 {
 	mlx_clear_window(p->mlx, p->win);
+	free_map(p->map);
 	exit(0);
 	return (0);
 }
@@ -86,19 +92,19 @@ int		main(int argc, char **argv)
 {
 	t_param	p;
 
+	p.arg1 = argv[1];
 	p.j.a = 1;
-	p.j.item = 0;
-	p.hwallState = 0;
-	p.wexitState = 0;
-	p.pos_x = 0;
-	p.exitKey = 0;
-	p.j.v = 1;
+	p.menuState = 1;
+	p.mlx = mlx_init();
+	p.win = mlx_new_window(p.mlx, SCREEN_X, SCREEN_Y, "Wolf3D");
+	CGWarpMouseCursorPosition(CGPointMake(0, 0));
+	CGDisplayHideCursor((CGDirectDisplayID)NULL);
 	if (argc != 2)
 	{
 		ft_putstr_fd("usage: ./wolf3d [map]\n", 2);
 		return (-1);
 	}
-	if (get_map(argv[1], map_len(argv[1], &p.map), &p.j) < 0 || p.j.a != 0)
+	if (get_map(p.arg1, map_len(p.arg1, &p.map), &p.j) < 0 || p.j.a != 0)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (-1);

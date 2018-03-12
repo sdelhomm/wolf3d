@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 15:10:29 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 16:24:08 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 17:39:23 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct	s_player
 	double	y;
 	double	a;
 	int		item;
-	int		v;
 }				t_player;
 
 typedef struct	s_map
@@ -144,6 +143,7 @@ typedef struct	s_param
 	int			tm;
 	int			fps;
 	int			time;
+	char		*arg1;
 }				t_param;
 
 int				get_map(char *file, t_map *map, t_player *j);
@@ -159,5 +159,7 @@ int				ft_exit(t_param *p);
 int				ft_show_menu(t_param *p);
 int				ft_death(t_param *p);
 int				ft_win(t_param *p);
+int				free_map(t_map map);
+t_param			init(t_param p);
 
 #endif

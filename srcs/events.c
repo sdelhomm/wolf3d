@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 16:25:08 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/12 17:45:16 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int			key_hook(int keycode, t_param *p)
 				p->wexitState = 1;
 			}
 			else if (p->wexitState == 1)
-				ft_exit(p);
+				p->menuState = 4;
 		}
 	}
 	//ft_putnbr(time(NULL) - p->tm); //INCROYABLE ... C'EST LE KEYCODE QUI EST AFFICHE ...
@@ -188,14 +188,11 @@ int			key_hook(int keycode, t_param *p)
 			else if (p->cursorState == 3)
 				ft_exit(p);
 		}
-		else if (p->menuState == 2 || p->menuState == 3)
-		{
+		else if (p->menuState == 2 || p->menuState == 3 || p->menuState == 4)
 			p->menuState = 1;
-			p->cursorState = 2;
-		}
 	}
 	if (!check_collision(keycode, p, p->map))
-		p->j.v = 0;
+		p->menuState = 3;
 	return (0);
 }
 
