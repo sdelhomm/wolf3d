@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 15:33:08 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 17:43:43 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/03/12 17:55:16 by tgunzbur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int		events_mouse(int bc, int x, int y, t_param *p)
 		if (x >= 0 && y >= 0 &&
 			x < p->map.x && y < p->map.y && p->map.map[y][x] == 1 &&
 			(p->j.item == 1 || p->j.item == 3) && p->j.a_item == 2)
+		{
 			p->map.map[(int)floor(y)][(int)floor(x)] = 0;
+			p->tm -= 5;
+		}
 		else if (x >= 0 && y >= 0 &&
 			x < p->map.x && y < p->map.y && p->map.map[y][x] == 3 &&
 			(p->j.item == 2 || p->j.item == 3) && p->j.a_item == 1)
