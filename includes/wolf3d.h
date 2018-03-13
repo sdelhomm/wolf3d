@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/13 17:40:35 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/13 18:07:49 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@
 # define FILE_SPIKES_S "sounds/spikes_sound.wav"
 # define FILE_WALL_FALL "sounds/wall_fall.wav"
 # define FILE_TIC "sounds/tic.wav"
+# define FILE_WRONG "sounds/wrong.wav"
 
 # include "../libft/includes/libft.h"
 # include <mlx.h>
@@ -106,6 +107,7 @@ typedef struct	s_son
 	FMOD_SOUND *spikes_sound;
 	FMOD_SOUND *wall_fall;
 	FMOD_SOUND *tic;
+	FMOD_SOUND *wrong;
 }				t_son;
 
 typedef struct	s_param

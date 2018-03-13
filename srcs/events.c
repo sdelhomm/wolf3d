@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:28:43 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/13 17:30:30 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/13 18:16:07 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,9 +149,11 @@ int			key_hook(int keycode, t_param *p)
 			p->swall = p->swall2;
 			FMOD_System_PlaySound(p->s.system, p->s.grab, NULL, 0, NULL);
 		}
-		else if (p->map.map[y][x] == 8 && p->exitKey == 1)
+		else if (p->map.map[y][x] == 8)
 		{
-			if (p->wexitState == 0)
+			if (p->exitKey != 1)
+				FMOD_System_PlaySound(p->s.system, p->s.wrong, NULL, 0, NULL);
+			else if (p->wexitState == 0)
 			{
 				p->wexit = p->wexit2;
 				p->wexitState = 1;

@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 19:01:10 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/13 17:41:12 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/13 18:08:23 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,12 @@ t_param	init(t_param p)
 		ft_exit(&p);
 	}
 	if (FMOD_System_CreateSound(p.s.system, FILE_TIC, FMOD_CREATESAMPLE, 0, &p.s.tic)
+		!= FMOD_OK)
+	{
+		ft_putstr_fd("Sound error\n", 2);
+		ft_exit(&p);
+	}
+	if (FMOD_System_CreateSound(p.s.system, FILE_WRONG, FMOD_CREATESAMPLE, 0, &p.s.wrong)
 		!= FMOD_OK)
 	{
 		ft_putstr_fd("Sound error\n", 2);
