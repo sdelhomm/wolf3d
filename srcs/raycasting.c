@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/13 16:32:59 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:42:40 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,20 @@ int		wolf3d(t_param *p, int fps, int time)
 		a += ((double)60 / (double)SCREEN_X);
 	}
 	mlx_put_image_to_window(p->mlx, p->win, p->ptr_img, 0, 0);
+	if (p->j.a_item == 1)
+	{
+		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img10, SCREEN_X * 0.4, SCREEN_Y * 0.85);
+		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img13, SCREEN_X * 0.5, SCREEN_Y * 0.85);
+	}
+	else
+	{
+		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img13, SCREEN_X * 0.4, SCREEN_Y * 0.85);
+		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img10, SCREEN_X * 0.5, SCREEN_Y * 0.85);
+	}
+	if (p->j.item == 1 || p->j.item == 3)
+		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img11, SCREEN_X * 0.4, SCREEN_Y * 0.85);
+	if (p->j.item == 2 || p->j.item == 3)
+		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img12, SCREEN_X * 0.5, SCREEN_Y * 0.85);
 	if ((p->j.item == 1 || p->j.item == 3) && p->j.a_item == 2)
 		mlx_put_image_to_window(p->mlx, p->win, p->ptr_img2, p->wx, p->wy);
 	if ((p->j.item == 2 || p->j.item == 3) && p->j.a_item == 1)

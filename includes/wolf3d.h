@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/13 16:17:55 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:40:35 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@
 # define FILE_SPIKES "texture/spikes.xpm"
 # define FILE_WIN "texture/win_screen.xpm"
 # define FILE_LOSE "texture/die.xpm"
+# define FILE_SLOT "texture/slot.xpm"
+# define FILE_SLOT2 "texture/slot2.xpm"
+# define FILE_SLOT_HAMMER "texture/slot_hammer.xpm"
+# define FILE_SLOT_SERPI "texture/slot_serpi.xpm"
 
 /* Sounds paths */
 # define FILE_WASH "sounds/washing.wav"
@@ -117,6 +121,10 @@ typedef struct	s_param
 	void		*ptr_img7;
 	void		*ptr_img8;
 	void		*ptr_img9;
+	void		*ptr_img10;
+	void		*ptr_img11;
+	void		*ptr_img12;
+	void		*ptr_img13;
 	char		*img;
 	int			bpp;
 	int			sl;
@@ -142,6 +150,10 @@ typedef struct	s_param
 	char		*key;
 	char		*menu;
 	char		*cursor;
+	char		*slot;
+	char		*slot2;
+	char		*slot_hammer;
+	char		*slot_serpi;
 	char		*tuto;
 	char		*s_win;
 	char		*lose;

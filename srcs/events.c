@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:28:43 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/13 16:32:56 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:30:30 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,9 +209,9 @@ int			key_hook(int keycode, t_param *p)
 			p->menuState = 1;
 		}
 	}
-	if (keycode == 18)
-		p->j.a_item = 1;
 	if (keycode == 19)
+		p->j.a_item = 1;
+	if (keycode == 18)
 		p->j.a_item = 2;
 	if (!check_collision(keycode, p, p->map))
 	{

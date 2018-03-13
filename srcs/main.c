@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 19:01:10 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/13 16:16:57 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/13 17:41:12 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,14 @@ t_param	init(t_param p)
 	p.s_win = mlx_get_data_addr(p.ptr_img8, &p.sl, &p.end, &p.bpp);
 	p.ptr_img9 = mlx_xpm_file_to_image(p.mlx, FILE_LOSE, &p.img_x3, &p.img_y3);
 	p.lose = mlx_get_data_addr(p.ptr_img9, &p.sl, &p.end, &p.bpp);
+	p.ptr_img10 = mlx_xpm_file_to_image(p.mlx, FILE_SLOT, &p.img_x3, &p.img_y3);
+	p.slot = mlx_get_data_addr(p.ptr_img10, &p.sl, &p.end, &p.bpp);
+	p.ptr_img11 = mlx_xpm_file_to_image(p.mlx, FILE_SLOT_HAMMER, &p.img_x3, &p.img_y3);
+	p.slot_hammer = mlx_get_data_addr(p.ptr_img11, &p.sl, &p.end, &p.bpp);
+	p.ptr_img12 = mlx_xpm_file_to_image(p.mlx, FILE_SLOT_SERPI, &p.img_x3, &p.img_y3);
+	p.slot_serpi = mlx_get_data_addr(p.ptr_img12, &p.sl, &p.end, &p.bpp);
+	p.ptr_img13 = mlx_xpm_file_to_image(p.mlx, FILE_SLOT2, &p.img_x3, &p.img_y3);
+	p.slot2 = mlx_get_data_addr(p.ptr_img13, &p.sl, &p.end, &p.bpp);
 	p.ptr_img = mlx_new_image(p.mlx, SCREEN_X, SCREEN_Y);
 	p.img = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
 	if (FMOD_System_CreateSound(p.s.system, FILE_WASH, FMOD_CREATESAMPLE, 0, &p.s.wash)
