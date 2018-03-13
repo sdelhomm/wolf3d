@@ -6,7 +6,7 @@
 #    By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/10 13:18:42 by tgunzbur          #+#    #+#              #
-#    Updated: 2018/03/11 12:31:09 by sdelhomm         ###   ########.fr        #
+#    Updated: 2018/03/13 16:44:54 by sdelhomm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ all: $(NAME)
 $(NAME):
 		@gcc $(FLAG) -c $(addprefix $(SRCPATH), $(SRC))
 		@ar rc $(NAME) $(OBJ)
-		@echo "[Make libft]"
+		@echo "\033[33;32m[Make libft]\t\t\t\t[ ✓ ]"
 
 clean:
 		@rm -f $(OBJ)
