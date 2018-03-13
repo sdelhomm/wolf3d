@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 19:01:10 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 19:01:21 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/13 12:19:52 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int		ft_exit(t_param *p)
 {
 	mlx_clear_window(p->mlx, p->win);
 	free_map(p->map);
+	//FMOD_System_Close(system);
+	//FMOD_System_Release(system);
 	exit(0);
 	return (0);
 }
@@ -102,6 +104,9 @@ int		main(int argc, char **argv)
 	p.win = mlx_new_window(p.mlx, SCREEN_X, SCREEN_Y, "Wolf3D");
 	CGWarpMouseCursorPosition(CGPointMake(0, 0));
 	CGDisplayHideCursor((CGDirectDisplayID)NULL);
+	//FMOD_SYSTEM *system;
+	//FMOD_System_Create(&system);
+	//FMOD_System_Init(system, 10, FMOD_INIT_NORMAL, NULL);
 	if (argc != 2)
 	{
 		ft_putstr_fd("usage: ./wolf3d [map]\n", 2);

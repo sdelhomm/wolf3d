@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 18:41:17 by tgunzbur         ###   ########.fr       */
+/*   Updated: 2018/03/13 12:18:02 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 # include <math.h>
 # include <ApplicationServices/ApplicationServices.h>
 # include <time.h>
+# include "fmod.h"
 
 typedef struct	s_player
 {
@@ -77,6 +78,11 @@ typedef struct	s_map
 	int		y;
 	int		**map;
 }				t_map;
+
+typedef struct	s_son
+{
+	FMOD_SOUND *wash;
+}				t_son;
 
 typedef struct	s_param
 {
@@ -132,6 +138,7 @@ typedef struct	s_param
 	int			img_y3;
 	t_player	j;
 	t_map		map;
+	t_son		s;
 	int			pos_x;
 	int			pos_y;
 	float		vy;
