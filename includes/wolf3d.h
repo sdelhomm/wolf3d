@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 17:52:38 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/13 12:18:02 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:17:55 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,17 @@
 # define FILE_WIN "texture/win_screen.xpm"
 # define FILE_LOSE "texture/die.xpm"
 
+/* Sounds paths */
+# define FILE_WASH "sounds/washing.wav"
+# define FILE_APPLAUSE "sounds/applause.wav"
+# define FILE_DOOR "sounds/door_open.wav"
+# define FILE_GLASS "sounds/glass_break.wav"
+# define FILE_GRAB "sounds/grab.wav"
+# define FILE_PIANO "sounds/lose.wav"
+# define FILE_SPIKES_S "sounds/spikes_sound.wav"
+# define FILE_WALL_FALL "sounds/wall_fall.wav"
+# define FILE_TIC "sounds/tic.wav"
+
 # include "../libft/includes/libft.h"
 # include <mlx.h>
 # include <math.h>
@@ -81,7 +92,16 @@ typedef struct	s_map
 
 typedef struct	s_son
 {
+	FMOD_SYSTEM *system;
 	FMOD_SOUND *wash;
+	FMOD_SOUND *applause;
+	FMOD_SOUND *door_open;
+	FMOD_SOUND *glass_break;
+	FMOD_SOUND *grab;
+	FMOD_SOUND *piano;
+	FMOD_SOUND *spikes_sound;
+	FMOD_SOUND *wall_fall;
+	FMOD_SOUND *tic;
 }				t_son;
 
 typedef struct	s_param

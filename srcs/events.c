@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 19:01:10 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/12 19:02:08 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:19:11 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		events_mouse(int bc, int x, int y, t_param *p)
 			x < p->map.x && y < p->map.y && p->map.map[y][x] == 1 &&
 			(p->j.item == 1 || p->j.item == 3) && p->j.a_item == 2)
 		{
+			FMOD_System_PlaySound(p->s.system, p->s.wall_fall, NULL, 0, NULL);
 			p->map.map[(int)floor(y)][(int)floor(x)] = 0;
 			p->tm -= 5;
 		}
@@ -29,6 +30,7 @@ int		events_mouse(int bc, int x, int y, t_param *p)
 			x < p->map.x && y < p->map.y && p->map.map[y][x] == 3 &&
 			(p->j.item == 2 || p->j.item == 3) && p->j.a_item == 1)
 		{
+			FMOD_System_PlaySound(p->s.system, p->s.wash, NULL, 0, NULL);
 			p->map.map[(int)floor(y)][(int)floor(x)] = 5;
 			p->clean_tag++;
 			if (p->clean_tag == p->tags)
@@ -136,6 +138,7 @@ int			key_hook(int keycode, t_param *p)
 			{
 				p->hwallState = 1;
 				p->hwall = p->hwall2;
+				FMOD_System_PlaySound(p->s.system, p->s.glass_break, NULL, 0, NULL);
 			}
 			else if (p->hwallState == 1)
 			{
@@ -143,6 +146,7 @@ int			key_hook(int keycode, t_param *p)
 				p->j.a_item = 2;
 				p->hwall = p->hwall3;
 				p->hwallState = 2;
+				FMOD_System_PlaySound(p->s.system, p->s.grab, NULL, 0, NULL);
 			}
 		}
 		else if (p->map.map[y][x] == 4 && p->j.item <= 1)
@@ -150,6 +154,7 @@ int			key_hook(int keycode, t_param *p)
 			p->j.item += 2;
 			p->j.a_item = 1;
 			p->swall = p->swall2;
+			FMOD_System_PlaySound(p->s.system, p->s.grab, NULL, 0, NULL);
 		}
 		else if (p->map.map[y][x] == 8 && p->exitKey == 1)
 		{
@@ -157,12 +162,14 @@ int			key_hook(int keycode, t_param *p)
 			{
 				p->wexit = p->wexit2;
 				p->wexitState = 1;
+				FMOD_System_PlaySound(p->s.system, p->s.door_open, NULL, 0, NULL);
 			}
 			else if (p->wexitState == 1)
 			{
 				p->menuState = 4;
 				p->cursorState = 1;
 				p->win_time = time(NULL) - p->tm;
+				ft_win(p);
 			}
 		}
 	}
@@ -172,6 +179,7 @@ int			key_hook(int keycode, t_param *p)
 			p->cursorState--;
 		else
 			p->cursorState = 3;
+		FMOD_System_PlaySound(p->s.system, p->s.tic, NULL, 0, NULL);
 	}
 	if (keycode == 125 && p->menuState == 1)
 	{
@@ -179,6 +187,7 @@ int			key_hook(int keycode, t_param *p)
 			p->cursorState++;
 		else
 			p->cursorState = 1;
+		FMOD_System_PlaySound(p->s.system, p->s.tic, NULL, 0, NULL);
 	}
 	if (keycode == 36)
 	{
@@ -212,7 +221,11 @@ int			key_hook(int keycode, t_param *p)
 	if (keycode == 19)
 		p->j.a_item = 2;
 	if (!check_collision(keycode, p, p->map))
+	{
+		FMOD_System_PlaySound(p->s.system, p->s.spikes_sound, NULL, 0, NULL);
 		p->menuState = 3;
+		ft_death(p);
+	}
 	return (0);
 }
 
@@ -234,10 +247,14 @@ int			hook(t_param *p)
 		state = -1;
 	if (p->wy < SCREEN_Y * 0.465 && state == -1)
 		state = 1;
-	p->wy += state;
-	p->wx += (double)state / 2;
-	p->ptr_img = mlx_new_image(p->mlx, SCREEN_X, SCREEN_Y);
-	p->img = mlx_get_data_addr(p->ptr_img, &p->sl, &p->end, &p->bpp);
-	wolf3d(p, fps, prevtime);
+	if (p->menuState == 0)
+	{
+		p->wy += state;
+		p->wx += (double)state / 2;
+		//p->ptr_img = mlx_new_image(p->mlx, SCREEN_X, SCREEN_Y);
+		//p->img = mlx_get_data_addr(p->ptr_img, &p->sl, &p->end, &p->bpp);
+		wolf3d(p, fps, prevtime);
+	}
+	ft_show_menu(p);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sdelhomm <sdelhomm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 19:01:10 by sdelhomm          #+#    #+#             */
-/*   Updated: 2018/03/13 12:19:52 by sdelhomm         ###   ########.fr       */
+/*   Updated: 2018/03/13 16:16:57 by sdelhomm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,60 @@ t_param	init(t_param p)
 	p.lose = mlx_get_data_addr(p.ptr_img9, &p.sl, &p.end, &p.bpp);
 	p.ptr_img = mlx_new_image(p.mlx, SCREEN_X, SCREEN_Y);
 	p.img = mlx_get_data_addr(p.ptr_img, &p.sl, &p.end, &p.bpp);
+	if (FMOD_System_CreateSound(p.s.system, FILE_WASH, FMOD_CREATESAMPLE, 0, &p.s.wash)
+		!= FMOD_OK)
+	{
+		ft_putstr_fd("Sound error\n", 2);
+		ft_exit(&p);
+	}
+	if (FMOD_System_CreateSound(p.s.system, FILE_APPLAUSE, FMOD_CREATESAMPLE, 0, &p.s.applause)
+		!= FMOD_OK)
+	{
+		ft_putstr_fd("Sound error\n", 2);
+		ft_exit(&p);
+	}
+	if (FMOD_System_CreateSound(p.s.system, FILE_DOOR, FMOD_CREATESAMPLE, 0, &p.s.door_open)
+		!= FMOD_OK)
+	{
+		ft_putstr_fd("Sound error\n", 2);
+		ft_exit(&p);
+	}
+	if (FMOD_System_CreateSound(p.s.system, FILE_GLASS, FMOD_CREATESAMPLE, 0, &p.s.glass_break)
+		!= FMOD_OK)
+	{
+		ft_putstr_fd("Sound error\n", 2);
+		ft_exit(&p);
+	}
+	if (FMOD_System_CreateSound(p.s.system, FILE_GRAB, FMOD_CREATESAMPLE, 0, &p.s.grab)
+		!= FMOD_OK)
+	{
+		ft_putstr_fd("Sound error\n", 2);
+		ft_exit(&p);
+	}
+	if (FMOD_System_CreateSound(p.s.system, FILE_PIANO, FMOD_CREATESAMPLE, 0, &p.s.piano)
+		!= FMOD_OK)
+	{
+		ft_putstr_fd("Sound error\n", 2);
+		ft_exit(&p);
+	}
+	if (FMOD_System_CreateSound(p.s.system, FILE_SPIKES_S, FMOD_CREATESAMPLE, 0, &p.s.spikes_sound)
+		!= FMOD_OK)
+	{
+		ft_putstr_fd("Sound error\n", 2);
+		ft_exit(&p);
+	}
+	if (FMOD_System_CreateSound(p.s.system, FILE_WALL_FALL, FMOD_CREATESAMPLE, 0, &p.s.wall_fall)
+		!= FMOD_OK)
+	{
+		ft_putstr_fd("Sound error\n", 2);
+		ft_exit(&p);
+	}
+	if (FMOD_System_CreateSound(p.s.system, FILE_TIC, FMOD_CREATESAMPLE, 0, &p.s.tic)
+		!= FMOD_OK)
+	{
+		ft_putstr_fd("Sound error\n", 2);
+		ft_exit(&p);
+	}
 	return (init_value(p));
 }
 
@@ -85,6 +139,7 @@ int		ft_exit(t_param *p)
 {
 	mlx_clear_window(p->mlx, p->win);
 	free_map(p->map);
+	FMOD_Sound_Release(p->s.wash);
 	//FMOD_System_Close(system);
 	//FMOD_System_Release(system);
 	exit(0);
@@ -104,9 +159,8 @@ int		main(int argc, char **argv)
 	p.win = mlx_new_window(p.mlx, SCREEN_X, SCREEN_Y, "Wolf3D");
 	CGWarpMouseCursorPosition(CGPointMake(0, 0));
 	CGDisplayHideCursor((CGDirectDisplayID)NULL);
-	//FMOD_SYSTEM *system;
-	//FMOD_System_Create(&system);
-	//FMOD_System_Init(system, 10, FMOD_INIT_NORMAL, NULL);
+	FMOD_System_Create(&p.s.system);
+	FMOD_System_Init(p.s.system, 10, FMOD_INIT_NORMAL, NULL);
 	if (argc != 2)
 	{
 		ft_putstr_fd("usage: ./wolf3d [map]\n", 2);
